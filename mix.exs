@@ -24,6 +24,9 @@ defmodule McFeely.MixProject do
       {:hackney, "~> 1.9"},
       {:swoosh, git: "https://github.com/guildflow/swoosh.git", branch: "postmark-updates"},
 
+      # Used to run test mailbox preview in dev mode
+      {:plug_cowboy, "~> 2.0"},
+
       # Used to parse Markdown content
       {:earmark, "~> 1.3"},
 
