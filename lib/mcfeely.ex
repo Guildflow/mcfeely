@@ -76,6 +76,8 @@ defmodule McFeely do
       |> subject("deliver_many_broadcast pepe")
       |> html_body("<h1>Broadcast Body</h1>")
       |> text_body("Broadcast Body\n\nLine3")
+      |> put_provider_option(:message_stream, "group-message-stream")
+
 
     email_to_carol =
       new()
@@ -84,8 +86,9 @@ defmodule McFeely do
       |> subject("deliver_many_broadcast carol")
       |> html_body("<h1>Broadcast Body</h1>")
       |> text_body("Broadcast Body\n\nLine3")
+      |> put_provider_option(:message_stream, "group-message-stream")
 
-    McFeely.Mailer.deliver_many([email_to_pepe, email_to_carol], message_stream: "group-message-stream")
+    McFeely.Mailer.deliver_many([email_to_pepe, email_to_carol])
   end
 
   defp deliver_many_broadcast_with_template() do
@@ -104,6 +107,7 @@ defmodule McFeely do
       |> from({"McFeely", "hello@guildflow.com"})
       |> put_provider_option(:template_alias, "group-message-template")
       |> put_provider_option(:template_model, attrs)
+      |> put_provider_option(:message_stream, "group-message-stream")
 
     email_to_carol =
       new()
@@ -111,8 +115,9 @@ defmodule McFeely do
       |> from({"McFeely", "hello@guildflow.com"})
       |> put_provider_option(:template_alias, "group-message-template")
       |> put_provider_option(:template_model, attrs)
+      |> put_provider_option(:message_stream, "group-message-stream")
 
-    McFeely.Mailer.deliver_many([email_to_pepe, email_to_carol], message_stream: "group-message-stream")
+    McFeely.Mailer.deliver_many([email_to_pepe, email_to_carol])
   end
 
   defp sample_text_body() do
